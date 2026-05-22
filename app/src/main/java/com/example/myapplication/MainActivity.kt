@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.R.attr.paddingTop
 import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -24,7 +25,12 @@ import androidx.compose.ui.unit.dp
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalView
@@ -32,7 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 
 
-class MainActivity :    ComponentActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -45,7 +51,7 @@ class MainActivity :    ComponentActivity() {
 }
 
 @Composable
-fun LoginScreen(){
+fun LoginScreen() {
     val view = LocalView.current
 
     SideEffect {
@@ -53,49 +59,85 @@ fun LoginScreen(){
         WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
     }
 
-    var text by remember { mutableStateOf("")}
-    var password by remember { mutableStateOf("")}
+    var text by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
 
-    ) {
-        Text("Sign In SpeechLab", fontSize = 30.sp)
-        Spacer(Modifier.height(12.dp),)
-        Column(){
-            Text("Email Address")
-            Spacer(Modifier.height(8.dp),)
-            TextField(
-                value = text,
-                onValueChange = {text = it},
-                placeholder = {Text( "Enter your email")},
-                modifier = Modifier.width(350.dp)
+    Box(modifier = Modifier.fillMaxSize()) {
+
+
+        Text(
+            "Sign In",
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(50.dp)
+        )
+        Column(
+            modifier = Modifier.align(Alignment.Center),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Sign In SpeechLab", fontSize = 30.sp)
+            Spacer(Modifier.height(30.dp))
+            Column() {
+                Text("Email Address")
+                Spacer(Modifier.height(15.dp))
+                TextField(
+                    value = text,
+                    onValueChange = { text = it },
+                    placeholder = { Text("Enter your email") },
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color.Gray,
+                        unfocusedContainerColor = Color.Gray,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent,
+                        errorIndicatorColor = Color.Transparent),
+                    modifier = Modifier.width(350.dp),
+                    shape = RoundedCornerShape(12.dp)
+                )
+
+            }
+            Spacer(Modifier.height(12.dp))
+            Column() {
+                Text("Password")
+                Spacer(Modifier.height(15.dp))
+                TextField(
+                    value = password,
+                    onValueChange = { password = it },
+                    placeholder = { Text("Enter your password") },
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color.Gray,
+                        unfocusedContainerColor = Color.Gray,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent,
+                        errorIndicatorColor = Color.Transparent),
+                    modifier = Modifier.width(350.dp),
+                    shape = RoundedCornerShape(12.dp)
+                )
+            }
+
+            Spacer(Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.width(350.dp),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Text("Forgot Password")
+            }
+            Spacer(Modifier.height(12.dp))
+            Button(onClick = {},
+                    modifier = Modifier.width(350.dp)
+                        .height(50.dp),
+                            colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFFFFD700),
+                contentColor = Color.Black
             )
+                ) {
+                Text("Login")
+            }
         }
 
-        Spacer(Modifier.height(12.dp),)
-        Column(){
-            Text("Password")
-            Spacer(Modifier.height(8.dp),)
-            TextField(
-                value = password,
-                onValueChange = {password = it},
-                placeholder = {Text( "Enter your password")},
-                modifier = Modifier.width(350.dp)
-            )
-        }
-
-        Spacer(Modifier.height(12.dp),)
-        Text("Forgot Password?")
-        Button(onClick={}) {
-            Text("Login")
-        }
     }
-
-
-
 
 
 }
