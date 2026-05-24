@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,6 +37,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 
 class MainActivity : ComponentActivity() {
@@ -43,7 +48,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme {
-                LoginScreen()
+
+                val navController = rememberNavController()
+
+                NavHost(
+                    navController = navController,
+                    startDestination = "login"
+                ){
+                    composable("login"){
+                        LoginScreen(navController)
+                    }
+                    composable("forgot_password") {
+                        ForgotPasswordScreen()
+                    }
+                }
+
+
             }
 
         }
@@ -51,7 +71,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     val view = LocalView.current
 
     SideEffect {
@@ -122,7 +142,13 @@ fun LoginScreen() {
                 modifier = Modifier.width(350.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                Text("Forgot Password")
+                Text(
+                    "Forgot Password",
+                    modifier = Modifier.clickable{
+                        navController.navigate("forgot_password")
+                    }
+
+                )
             }
             Spacer(Modifier.height(12.dp))
             Button(onClick = {},
