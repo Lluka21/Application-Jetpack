@@ -61,6 +61,9 @@ class MainActivity : ComponentActivity() {
                     composable("forgot_password") {
                         ForgotPasswordScreen()
                     }
+                    composable("sign_in") {
+                        SignInScreen()
+                    }
                 }
 
 
@@ -91,6 +94,10 @@ fun LoginScreen(navController: NavController) {
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(50.dp)
+                .clickable{
+                    navController.navigate("sign_in")
+                }
+
         )
         Column(
             modifier = Modifier.align(Alignment.Center),
