@@ -32,6 +32,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalView
@@ -41,136 +42,47 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-
+import androidx.lifecycle.ViewModel
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.State
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
-
-                val navController = rememberNavController()
-
-                NavHost(
-                    navController = navController,
-                    startDestination = "login"
-                ){
-                    composable("login"){
-                        LoginScreen(navController)
-                    }
-                    composable("forgot_password") {
-                        ForgotPasswordScreen()
-                    }
-                    composable("sign_in") {
-                        SignInScreen()
-                    }
-                }
-
-
+                CounterScreen()
             }
+    }
+}
 
-        }
+
+
+class CounterViewModel : ViewModel() {
+
+    private val _count = mutableStateOf(0)
+    val count: State<Int> = _count
+
+    fun increment() {
+        _count.value++
     }
 }
 
 @Composable
-fun LoginScreen(navController: NavController) {
-    val view = LocalView.current
+fun CounterScreen(viewModel: CounterViewModel = viewModel()) {
+    val count = viewModel.count.value
 
-    SideEffect {
-        val window = (view.context as Activity).window
-        WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
-    }
-
-    var text by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-
-
-    Box(modifier = Modifier.fillMaxSize()) {
-
-
-        Text(
-            "Sign In",
-            modifier = Modifier
-                .align(Alignment.TopEnd)
-                .padding(50.dp)
-                .clickable{
-                    navController.navigate("sign_in")
-                }
-
-        )
-        Column(
-            modifier = Modifier.align(Alignment.Center),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text("Sign In SpeechLab", fontSize = 30.sp)
-            Spacer(Modifier.height(30.dp))
-            Column() {
-                Text("Email Address")
-                Spacer(Modifier.height(15.dp))
-                TextField(
-                    value = text,
-                    onValueChange = { text = it },
-                    placeholder = { Text("Enter your email") },
-                    colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color.Gray,
-                        unfocusedContainerColor = Color.Gray,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        disabledIndicatorColor = Color.Transparent,
-                        errorIndicatorColor = Color.Transparent),
-                    modifier = Modifier.width(350.dp),
-                    shape = RoundedCornerShape(12.dp)
-                )
-
-            }
-            Spacer(Modifier.height(12.dp))
-            Column() {
-                Text("Password")
-                Spacer(Modifier.height(15.dp))
-                TextField(
-                    value = password,
-                    onValueChange = { password = it },
-                    placeholder = { Text("Enter your password") },
-                    colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color.Gray,
-                        unfocusedContainerColor = Color.Gray,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        disabledIndicatorColor = Color.Transparent,
-                        errorIndicatorColor = Color.Transparent),
-                    modifier = Modifier.width(350.dp),
-                    shape = RoundedCornerShape(12.dp)
-                )
-            }
-
-            Spacer(Modifier.height(12.dp))
-            Row(
-                modifier = Modifier.width(350.dp),
-                horizontalArrangement = Arrangement.End
-            ) {
-                Text(
-                    "Forgot Password",
-                    modifier = Modifier.clickable{
-                        navController.navigate("forgot_password")
-                    }
-
-                )
-            }
-            Spacer(Modifier.height(12.dp))
-            Button(onClick = {},
-                    modifier = Modifier.width(350.dp)
-                        .height(50.dp),
-                            colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFFFFD700),
-                contentColor = Color.Black
-            )
-                ) {
-                Text("Login")
-            }
+    Column (modifier = Modifier
+    ){
+        Text("Count: $count")
+        Button(onClick={
+            viewModel.increment()
+        }) {
+            Text("Increase")
         }
-
     }
 
 
 }
+
+
