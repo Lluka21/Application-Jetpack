@@ -46,43 +46,78 @@ import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.State
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHost
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-                CounterScreen()
+                AppNav()
             }
     }
 }
 
 
+@Composable
+fun AppNav() {
+    val navController = rememberNavController()
 
-class CounterViewModel : ViewModel() {
-
-    private val _count = mutableStateOf(0)
-    val count: State<Int> = _count
-
-    fun increment() {
-        _count.value++
+    NavHost(
+        navController = navController,
+        startDestination = "home"
+    ) {
+        composable("home") {
+            HomeScreen(navController)
+        }
+        composable("login") {
+            LoginScreen(navController)
+        }
     }
 }
 
-@Composable
-fun CounterScreen(viewModel: CounterViewModel = viewModel()) {
-    val count = viewModel.count.value
 
-    Column (modifier = Modifier
+
+
+@Composable
+fun HomeScreen(navController: NavController) {
+
+    Column(modifier = Modifier
+        .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+
+
     ){
-        Text("Count: $count")
+        Text("This is Home Screen")
         Button(onClick={
-            viewModel.increment()
+            navController.navigate("login")
         }) {
-            Text("Increase")
+            Text("Go to Login")
         }
     }
 
+}
+
+@Composable
+fun LoginScreen(navController: NavController) {
+    Column(modifier = Modifier
+        .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+
+
+    ){
+        Text("This is Login Screen")
+        Button(onClick = {
+            navController.navigate("home")
+        }){
+            Text("Back to Home")
+        }
+    }
 
 }
+
+
+
 
 
