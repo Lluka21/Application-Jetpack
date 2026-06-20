@@ -75,9 +75,6 @@ fun AppNav() {
     }
 }
 
-
-
-
 @Composable
 fun HomeScreen(navController: NavController) {
 
@@ -92,7 +89,7 @@ fun HomeScreen(navController: NavController) {
         Button(onClick={
             navController.navigate("login")
         }) {
-            Text("Go to Login")
+            Text("Go to Login page")
         }
     }
 
@@ -109,7 +106,7 @@ fun LoginScreen(navController: NavController) {
     ){
         Text("This is Login Screen")
         Button(onClick = {
-            navController.navigate("home")
+            navController.popBackStack()
         }){
             Text("Back to Home")
         }
