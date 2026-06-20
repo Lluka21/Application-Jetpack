@@ -108,7 +108,7 @@ fun LoginScreen(navController: NavController) {
         Button(onClick = {
             navController.popBackStack()
         }){
-            Text("Back to Home")
+            Text("Back to Homepage")
         }
     }
 
