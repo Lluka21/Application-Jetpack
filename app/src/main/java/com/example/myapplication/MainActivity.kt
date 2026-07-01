@@ -52,67 +52,23 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-                AppNav()
+
             }
     }
 }
 
 
-@Composable
-fun AppNav() {
-    val navController = rememberNavController()
 
-    NavHost(
-        navController = navController,
-        startDestination = "home"
-    ) {
-        composable("home") {
-            HomeScreen(navController)
-        }
-        composable("login") {
-            LoginScreen(navController)
-        }
-    }
-}
+
 
 @Composable
-fun HomeScreen(navController: NavController) {
-
-    Column(modifier = Modifier
-        .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+fun WelcomeScreen() {
 
 
-    ){
-        Text("This is Home Screen")
-        Button(onClick={
-            navController.navigate("login")
-        }) {
-            Text("Go to Login page")
-        }
-    }
 
 }
 
-@Composable
-fun LoginScreen(navController: NavController) {
-    Column(modifier = Modifier
-        .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
 
-
-    ){
-        Text("This is Login Screen")
-        Button(onClick = {
-            navController.popBackStack()
-        }){
-            Text("Back to Homepage")
-        }
-    }
-
-}
 
 
 
