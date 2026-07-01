@@ -50,6 +50,7 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHost
 
@@ -79,19 +80,25 @@ fun WelcomeScreen() {
     ) {
         Image(
             modifier = Modifier
-                .padding(bottom = 30.dp),
+                .fillMaxWidth()
+                .padding(10.dp),
             painter = painterResource(id = R.drawable.task_mngmnt),
             contentDescription = null
         )
         Text(
-            text = "Task Management & ",
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Bold
+            text = "Task Management &\nTo-Do List",
+            fontSize = 35.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .padding(20.dp)
         )
         Text(
-            text = "To-Do List",
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Bold
+            text ="This productive tool is designed to help \n you better manage your task \n project-wise conveniently!",
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            fontSize = 17.sp,
+            color = Color(0xFF888888)
         )
     }
 
