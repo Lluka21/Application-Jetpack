@@ -75,24 +75,24 @@ fun WelcomeScreen() {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
-
-
     ) {
         Image(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp),
+            .height(300.dp),
             painter = painterResource(id = R.drawable.task_mngmnt),
             contentDescription = null
         )
+        Spacer(modifier = Modifier.height(24.dp))
         Text(
             text = "Task Management &\nTo-Do List",
             fontSize = 35.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
-            modifier = Modifier
-                .padding(20.dp)
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         Text(
             text ="This productive tool is designed to help \n you better manage your task \n project-wise conveniently!",
             modifier = Modifier.fillMaxWidth(),
@@ -100,6 +100,10 @@ fun WelcomeScreen() {
             fontSize = 17.sp,
             color = Color(0xFF888888)
         )
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        LetsStartButton()
     }
 
 
