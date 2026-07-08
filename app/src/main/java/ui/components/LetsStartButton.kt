@@ -13,11 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 
 @Composable
-fun LetsStartButton() {
-    Button(onClick = {},
+fun LetsStartButton(navController: NavController) {
+    Button(onClick = {
+        navController.navigate("hello")
+    },
         colors = ButtonDefaults.buttonColors(Color(0xFF491AB1)),
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier
