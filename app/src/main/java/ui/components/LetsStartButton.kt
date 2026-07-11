@@ -19,7 +19,7 @@ import androidx.navigation.NavController
 @Composable
 fun LetsStartButton(navController: NavController) {
     Button(onClick = {
-        navController.navigate("hello")
+        navController.navigate("login")
     },
         colors = ButtonDefaults.buttonColors(Color(0xFF491AB1)),
         shape = RoundedCornerShape(10.dp),
