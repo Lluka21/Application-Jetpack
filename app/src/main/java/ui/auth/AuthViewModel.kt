@@ -21,5 +21,8 @@ class AuthViewModel : ViewModel() {
     fun onPasswordChange(newPassword: String) {
         password = newPassword
     }
+
 }
+}
+
 
