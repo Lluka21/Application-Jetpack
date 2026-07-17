@@ -7,6 +7,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,16 +30,18 @@ fun LoginScreen(navController: NavController) {
 
     ){
         Text(
-            text = "An easy way to manage your tasks",
-            fontSize = 20.sp,
+            text = "Login",
+            fontSize = 30.sp,
             color = Color(0xFF888888)
         )
 
-        Button(onClick = {
-            navController.navigate("home")
-        }){
-            Text(text="Main Screen")
-        }
+
+
+//        Button(onClick = {
+//            navController.navigate("home")
+//        }){
+//            Text(text="Main Screen")
+//        }
     }
 
 
