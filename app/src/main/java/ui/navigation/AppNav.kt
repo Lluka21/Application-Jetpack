@@ -20,7 +20,10 @@ fun AppNavigation() {
             WelcomeScreen(navController)
         }
         composable("login"){
-            LoginScreen()
+            LoginScreen(navController)
+        }
+        composable("home") {
+            HelloUser()
         }
     }
 }
