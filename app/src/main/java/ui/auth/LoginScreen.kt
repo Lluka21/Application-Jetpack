@@ -36,13 +36,6 @@ fun LoginScreen(navController: NavController) {
         )
 
 
-        Text(
-            text = "This is login",
-            fontSize = 30.sp,
-            color = Color(0xFF888888)
-        )
-
-
 //        Button(onClick = {
 //            navController.navigate("home")
 //        }){
