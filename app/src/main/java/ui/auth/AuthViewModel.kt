@@ -22,6 +22,10 @@ class AuthViewModel : ViewModel() {
         password = newPassword
     }
 
+//    fun login() {
+//
+//    }
+
 }
 
 
