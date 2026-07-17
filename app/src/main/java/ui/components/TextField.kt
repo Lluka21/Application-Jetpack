@@ -10,14 +10,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 
 @Composable
-fun TextFieldFunction(label: () -> Unit) {
-
-    var text by remember {mutableStateOf("")}
-
+fun TextFieldFunction(
+    text: String,
+    onTextChange:(String) -> Unit,
+    label:String
+) {
 
     TextField(
        value = text,
-        onValueChange = {text = it},
+        onValueChange = {onTextChange(it)},
         label = {Text(text = text)}
     )
 }
