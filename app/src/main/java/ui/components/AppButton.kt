@@ -13,14 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 
 
 @Composable
-fun LetsStartButton(navController: NavController) {
-    Button(onClick = {
-        navController.navigate("login")
-    },
+fun AppButton(text: String, onClick: () -> Unit) {
+    Button(onClick = onClick,
         colors = ButtonDefaults.buttonColors(Color(0xFF491AB1)),
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier
@@ -32,7 +29,7 @@ fun LetsStartButton(navController: NavController) {
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Let's Start",
+            Text(text,
                 fontSize = 17.sp,
                 modifier = Modifier.align(Alignment.Center))
             Text(

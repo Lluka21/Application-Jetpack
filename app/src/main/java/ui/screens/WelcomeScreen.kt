@@ -18,7 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.myapplication.LetsStartButton
+import com.example.myapplication.AppButton
 import com.example.myapplication.R
 
 @Composable
@@ -57,7 +57,9 @@ fun WelcomeScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        LetsStartButton(navController)
+        AppButton("Let's Start", onClick = {
+            navController.navigate("login")
+        })
     }
 
 
