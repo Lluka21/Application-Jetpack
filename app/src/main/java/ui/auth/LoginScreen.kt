@@ -1,8 +1,9 @@
 package ui.auth
 
-import android.R.attr.label
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -23,7 +24,9 @@ import ui.components.TextFieldFunction
 @Composable
 
 fun LoginScreen(
+    navController: NavController,
     authViewModel: AuthViewModel = viewModel()
+
 ) {
 
     Column(
@@ -57,6 +60,22 @@ fun LoginScreen(
             },
             label = "Password"
         )
+        Row(
+            modifier = Modifier
+            .padding(35.dp)
+        ){
+            Text(
+                text = "Don't have an account ?",
+                modifier = Modifier.padding(end = 7.dp)
+            )
+            Text(
+                text = "Sign Up",
+                modifier = Modifier.clickable{
+                    navController.navigate("sign up")
+                }
+            )
+        }
+
 
     }
 
