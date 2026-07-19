@@ -56,7 +56,7 @@ fun LoginScreen(
         AppTextField(
             value = authViewModel.password,
             onValueChange = {
-                authViewModel.onEmailChange(it)
+                authViewModel.onPasswordChange(it)
             },
             label = "Password"
         )

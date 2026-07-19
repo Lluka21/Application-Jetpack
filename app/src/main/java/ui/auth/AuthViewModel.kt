@@ -13,6 +13,11 @@ class AuthViewModel : ViewModel() {
     var password by mutableStateOf("")
         private set
 
+    var username by mutableStateOf("")
+        private set
+
+    var confirmPassword by mutableStateOf("")
+        private set
 
     fun onEmailChange(newEmail: String) {
         email = newEmail
@@ -21,6 +26,16 @@ class AuthViewModel : ViewModel() {
     fun onPasswordChange(newPassword: String) {
         password = newPassword
     }
+
+    fun onUsernameChange(newUsername: String) {
+        username = newUsername
+    }
+
+    fun onConfirmPassword(newConfirmPassword: String) {
+        confirmPassword = newConfirmPassword
+    }
+
+
 
 //    fun login() {
 //
