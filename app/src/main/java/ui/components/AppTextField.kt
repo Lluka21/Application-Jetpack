@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun TextFieldFunction(
+fun AppTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,

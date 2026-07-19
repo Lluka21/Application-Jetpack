@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import ui.components.TextFieldFunction
+import ui.components.AppTextField
 
 
 @Composable
@@ -44,7 +44,7 @@ fun LoginScreen(
             color = Color(0xFF000000)
         )
         Spacer(modifier = Modifier.height(30.dp))
-        TextFieldFunction(
+        AppTextField(
             value = authViewModel.email,
             onValueChange = {
                 authViewModel.onEmailChange(it)
@@ -53,7 +53,7 @@ fun LoginScreen(
 
         )
         Spacer(modifier = Modifier.height(10.dp))
-        TextFieldFunction(
+        AppTextField(
             value = authViewModel.password,
             onValueChange = {
                 authViewModel.onEmailChange(it)
