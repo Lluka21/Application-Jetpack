@@ -18,11 +18,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import com.example.myapplication.AppButton
 import ui.components.AppTextField
 
 @Composable
 fun SignUp(
+    navController: NavController,
     authViewModel: AuthViewModel = viewModel()
+
 ) {
     Column(
         modifier = Modifier
@@ -70,7 +74,9 @@ fun SignUp(
             label = "Confirm Password"
         )
         Spacer(modifier = Modifier.height(30.dp))
-
+        AppButton("Create Account", onClick = {
+            navController.navigate("login")
+        })
 
 
     }
