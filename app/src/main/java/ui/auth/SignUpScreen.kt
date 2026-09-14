@@ -21,13 +21,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.myapplication.AppButton
 import ui.components.AppTextField
+import ui.auth.AuthViewModel
 
 @Composable
 fun SignUp(
     navController: NavController,
     authViewModel: AuthViewModel = viewModel()
 
-) {
+){
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -75,6 +76,7 @@ fun SignUp(
         )
         Spacer(modifier = Modifier.height(30.dp))
         AppButton("Create Account", onClick = {
+//            authViewModel.signup()
             navController.navigate("login")
         })
 
