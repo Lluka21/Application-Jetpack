@@ -5,3 +5,9 @@ data class SignUpRequest(
     val email: String,
     val password: String,
 )
+
+
+data class SignInRequst(
+    val email: String,
+    val password: String
+)
