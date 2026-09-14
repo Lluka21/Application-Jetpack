@@ -17,17 +17,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.myapplication.AppButton
+import com.example.myapplication.data.repository.AuthRepository
 import ui.components.AppTextField
+import ui.auth.AuthViewModel
+
+
 
 @Composable
 fun SignUp(
     navController: NavController,
-    authViewModel: AuthViewModel = viewModel()
+    repository: AuthRepository
 
-) {
+){
+    val authViewModel: AuthViewModel = viewModel(
+        factory = AuthViewModelFactory(repository)
+    )
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -75,6 +85,7 @@ fun SignUp(
         )
         Spacer(modifier = Modifier.height(30.dp))
         AppButton("Create Account", onClick = {
+            authViewModel.signup()
             navController.navigate("login")
         })
 

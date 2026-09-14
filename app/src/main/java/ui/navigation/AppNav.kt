@@ -1,5 +1,6 @@
 package ui.navigation
 
+
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -9,11 +10,14 @@ import ui.auth.LoginScreen
 import ui.auth.SignUp
 import ui.screens.HelloUser
 import ui.screens.WelcomeScreen
-
+import com.example.myapplication.data.repository.AuthRepository
+import com.example.myapplication.data.remote.RetrofitInstance
 
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+    val repository = AuthRepository(RetrofitInstance.authApi)
+
 
     NavHost(
         navController = navController, startDestination = "welcome"
@@ -22,10 +26,10 @@ fun AppNavigation() {
             WelcomeScreen(navController)
         }
         composable("login"){
-            LoginScreen(navController)
+            LoginScreen(navController, repository = repository)
         }
         composable("sign up") {
-            SignUp(navController)
+            SignUp(navController, repository = repository)
         }
     }
 }

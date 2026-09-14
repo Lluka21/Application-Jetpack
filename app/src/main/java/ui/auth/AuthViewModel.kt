@@ -4,8 +4,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import data.model.SignUpRequest
+import com.example.myapplication.data.repository.AuthRepository
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel(private val repository: AuthRepository) : ViewModel(){
 
     var email by mutableStateOf("")
         private set
@@ -35,10 +40,38 @@ class AuthViewModel : ViewModel() {
         confirmPassword = newConfirmPassword
     }
 
-
-
+    fun signup() {
+        if (confirmPassword == password) {
+            viewModelScope.launch {
+                val signUpData = SignUpRequest(
+                    username = username,
+                    password = password,
+                    email = email
+                )
+                repository.signup(signUpData)
+            }
+        } else {
+            throw IllegalArgumentException("Passwords don't match!") // We can change this with UI
+        }
+    }
 
 
 }
+
+
+
+class AuthViewModelFactory(private val repository: AuthRepository) : ViewModelProvider.Factory{
+
+     override fun <T: ViewModel> create(modelClass: Class<T>): T {
+        if(modelClass.isAssignableFrom(AuthViewModel::class.java)) {
+            return AuthViewModel(repository) as T
+        } else {
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
+    }
+
+
+}
+
 
 
