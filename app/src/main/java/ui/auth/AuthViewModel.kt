@@ -4,8 +4,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import data.model.SignUpRequest
+import com.example.myapplication.data.repository.AuthRepository
 
-class AuthViewModel : ViewModel() {
+
+
+
+class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
 
     var email by mutableStateOf("")
         private set
@@ -35,10 +40,20 @@ class AuthViewModel : ViewModel() {
         confirmPassword = newConfirmPassword
     }
 
+    suspend fun signup()  {
+      val signUpData =   SignUpRequest(
+            username = username,
+            email = email,
+            password = password,
+        )
 
+        repository.signup(signUpData);
+    }
 
 
 
 }
+
+
 
 
