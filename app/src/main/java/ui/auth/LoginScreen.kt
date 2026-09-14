@@ -17,8 +17,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.NavController
+import com.example.myapplication.data.repository.AuthRepository
 import ui.components.AppTextField
 
 
@@ -27,9 +30,13 @@ import ui.components.AppTextField
 
 fun LoginScreen(
     navController: NavController,
-    authViewModel: AuthViewModel = viewModel()
+   repository: AuthRepository
 
 ) {
+    val  authViewModel: AuthViewModel = viewModel(
+        factory = AuthViewModelFactory(repository)
+    )
+
 
     Column(
         modifier = Modifier

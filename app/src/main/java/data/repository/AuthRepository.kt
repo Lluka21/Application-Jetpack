@@ -6,11 +6,11 @@ import data.model.SignUpRequest
 
 
 class AuthRepository(
-    private val authApi: AuthApi
+//    private val authApi: AuthApi
 ) {
-    suspend fun signup(request: SignUpRequest) {
-        authApi.signup(request);
-    }
+//    suspend fun signup(request: SignUpRequest) {
+////        authApi.signup(request);
+//    }
 
 
 }
