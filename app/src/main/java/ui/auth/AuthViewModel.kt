@@ -8,8 +8,6 @@ import data.model.SignUpRequest
 import com.example.myapplication.data.repository.AuthRepository
 
 
-
-
 class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
 
     var email by mutableStateOf("")
@@ -38,18 +36,28 @@ class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
 
     fun onConfirmPassword(newConfirmPassword: String) {
         confirmPassword = newConfirmPassword
+
+
     }
 
-    suspend fun signup()  {
-      val signUpData =   SignUpRequest(
-            username = username,
-            email = email,
-            password = password,
-        )
+    suspend fun signup() {
 
-        repository.signup(signUpData);
+        if (confirmPassword == password) {
+            val signUpData = SignUpRequest(
+                username = username,
+                email = email,
+                password = password,
+            )
+
+            repository.signup(signUpData)
+        } else {
+            throw IllegalArgumentException("Passwords don't match!") // We can change this with UI
+        }
+
+
+
+
     }
-
 
 
 }
