@@ -11,11 +11,12 @@ import ui.auth.SignUp
 import ui.screens.HelloUser
 import ui.screens.WelcomeScreen
 import com.example.myapplication.data.repository.AuthRepository
+import com.example.myapplication.data.remote.RetrofitInstance
 
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-    val repository = AuthRepository()
+    val repository = AuthRepository(RetrofitInstance.authApi)
 
 
     NavHost(

@@ -48,7 +48,7 @@ class AuthViewModel(private val repository: AuthRepository) : ViewModel(){
                     password = password,
                     email = email
                 )
-//                repository.signup(signUpData)
+                repository.signup(signUpData)
             }
         } else {
             throw IllegalArgumentException("Passwords don't match!") // We can change this with UI
