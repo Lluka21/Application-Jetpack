@@ -30,7 +30,7 @@ import ui.components.AppTextField
 
 fun LoginScreen(
     navController: NavController,
-   repository: AuthRepository
+    repository: AuthRepository
 
 ) {
     val  authViewModel: AuthViewModel = viewModel(

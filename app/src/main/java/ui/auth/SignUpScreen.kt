@@ -86,7 +86,7 @@ fun SignUp(
         Spacer(modifier = Modifier.height(30.dp))
         AppButton("Create Account", onClick = {
             authViewModel.signup()
-            navController.navigate("login")
+            navController.navigate("login",)
         })
 
 
