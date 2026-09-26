@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,7 +25,8 @@ import com.example.myapplication.AppButton
 import com.example.myapplication.data.repository.AuthRepository
 import ui.components.AppTextField
 import ui.auth.AuthViewModel
-
+import error.AuthError
+import ui.components.ErrorMessage
 
 
 @Composable
@@ -86,10 +88,15 @@ fun SignUp(
         Spacer(modifier = Modifier.height(30.dp))
         AppButton("Create Account", onClick = {
             authViewModel.signup()
-            navController.navigate("login",)
+
         })
-
-
+        if(authViewModel.error is AuthError.Validation) {
+            ErrorMessage(message = "All fields are required")
+        }
+        LaunchedEffect(authViewModel.isSignupSuccessful) {
+            if(authViewModel.isSignupSuccessful) {
+                navController.navigate("login")
+            }
+        }
     }
-
 }
